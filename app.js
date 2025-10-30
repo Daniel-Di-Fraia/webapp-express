@@ -2,11 +2,17 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+// importiamo middleware gestione path imgs
+const imagePath = require("./middlewares/imagePath");
+
 // usiamo il middleware static di express per file statici
 app.use(express.static('public'));
 
 // registro il body-parser
 app.use(express.json());
+
+//usiamo middleware gestione path imgs per le rotte
+app.use(imagePath);
 
 // importiamo modulo router movies
 const router = require("./routers/movies");

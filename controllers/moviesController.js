@@ -32,6 +32,7 @@ function show(req, res) {
 
         // Recuperiamo il film (movie)
         const movie = movieResults[0];
+        movie.image = req.imagePath + movie.image;
 
         // eseguiamo la seconda query per le reviews
         connection.query(reviewsSql, [id], (err, reviewsResults) => {
