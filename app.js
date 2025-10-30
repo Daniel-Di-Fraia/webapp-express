@@ -11,12 +11,24 @@ app.use(express.json());
 // importiamo modulo router movies
 const router = require("./routers/movies");
 
+//importiamo middleware errorServer
+const errorServer = require("./middlewares/errorServer");
+
+//importiamo middleware notFound
+const notFound = require("./middlewares/notFound");
+
 // impostiamo la rotta di index
 app.get("/", (req, res) => {
     res.send('<h1>Server della mia webapp movies</h1>')
 });
 
 app.use("/movies", router);
+
+// richiamiamo middleware gestione errori
+app.use(errorServer);
+
+//richiamiamo middleware errore 404 per rotta non trovata
+app.use(notFound);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
