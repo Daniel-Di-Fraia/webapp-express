@@ -23,7 +23,7 @@ function show(req, res) {
     const movieSql = 'SELECT * FROM movies WHERE id = ?';
 
     // Prepariamo la query per le reviews con join e where
-    const reviewsSql =  'SELECT * FROM reviews WHERE movie_id = ?';
+    const reviewsSql = 'SELECT * FROM reviews WHERE movie_id = ?';
 
     // Eseguiamo la prima query per il movie
     connection.query(movieSql, [id], (err, movieResults) => {
