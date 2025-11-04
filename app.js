@@ -5,6 +5,9 @@ const port = 3000;
 // importiamo middleware gestione path imgs
 const imagePath = require("./middlewares/imagePath");
 
+// importiamo middleware CORS
+const cors = require("cors");
+
 //importo cors
 const cors = require("cors");
 app.use(cors({
