@@ -5,13 +5,11 @@ const port = 3000;
 // importiamo middleware gestione path imgs
 const imagePath = require("./middlewares/imagePath");
 
-// importiamo middleware CORS
-const cors = require("cors");
-
 //importo cors
 const cors = require("cors");
 app.use(cors({
-    origin: process.env.FE_APP
+    origin: process.env.FE_APP,
+    credentials: true
 }));
 
 // usiamo il middleware static di express per file statici
