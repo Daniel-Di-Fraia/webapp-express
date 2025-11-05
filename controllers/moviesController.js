@@ -1,6 +1,8 @@
 // Importiamo il file di connessione al database
 const connection = require('../data/db');
 
+
+//index
 function index(req, res) {
 
     // prepariamo la query
@@ -21,7 +23,7 @@ function index(req, res) {
     });
 }
 
-
+//show
 function show(req, res) {
 
     // recuperiamo l'id 
@@ -51,8 +53,21 @@ function show(req, res) {
             res.json(movie);
         });
     });
-
 }
 
-// esportiamo
-module.exports = { index, show }
+// Store review
+function movieReview(req, res) {
+    const id = req.params.id;
+
+    const { name, vote, text } = req.body;
+
+    const sql = 'INSERT INTO `reviews` (`name`, `vote`, `text`, `movie_id`) VALUES (?,?,?,?)';
+
+    connection.query(sql, [name, vote, text, id], (err, result) => {
+        if (err) return res.status(500).json({ error: 'Database query failed'});
+        res.status(201);
+        res.json({ id: result.insertId, message: 'Review added' });
+    })
+}
+
+module.exports = { index, show, movieReview }
